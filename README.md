@@ -2,4 +2,4 @@
 
 [Website](https://ernieturner.github.io/industry-methods-spring-2026/)
 
-New stuff
+New links can go here
