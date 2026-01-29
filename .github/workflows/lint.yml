@@ -1,0 +1,32 @@
+name: Lint and Format Check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run HTML validation
+        run: npm run html-validate
+
+      - name: Run CSS validation
+        run: npm run css-validate
+
+      - name: Run Prettier format check
+        run: npm run format-check

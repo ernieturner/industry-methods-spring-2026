@@ -1,0 +1,27 @@
+{
+  "name": "industry-methods-spring-2026",
+  "version": "1.0.0",
+  "description": "[Website](https://ernieturner.github.io/industry-methods-spring-2026/)",
+  "homepage": "https://github.com/ernieturner/industry-methods-spring-2026#readme",
+  "bugs": {
+    "url": "https://github.com/ernieturner/industry-methods-spring-2026/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ernieturner/industry-methods-spring-2026.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "html-validate": "^10.7.0",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.0.0",
+    "stylelint-config-standard": "^40.0.0"
+  },
+  "scripts": {
+    "html-validate": "html-validate index.html",
+    "css-validate": "stylelint '**/*.css'",
+    "css-validate-fix": "stylelint '**/*.css' --fix",
+    "format-check": "prettier --check .",
+    "format": "prettier --write ."
+  }
+}
