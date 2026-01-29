@@ -1,0 +1,60 @@
+name: Student App Folder Validation
+
+on:
+  pull_request:
+    # This triggers the action whenever a file is changed in a subdirectory
+    paths:
+      - '**'
+
+jobs:
+  validate-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify package.json and README
+        run: |
+          echo "Checking changed files..."
+
+          # Identify changed directories
+          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }} | xargs -I {} dirname {} | sort | uniq)
+
+          for dir in $CHANGED_DIRS; do
+            # Skip root and .github
+            if [ "$dir" == "." ] || [[ "$dir" == .github* ]] || [[ "$dir" == assets ]]; then
+              continue
+            fi
+
+            echo "Validating student app directory: $dir"
+
+            # 1. Check if package.json exists
+            if [ ! -f "$dir/package.json" ]; then
+              echo "❌ Error: package.json missing in $dir"
+              exit 1
+            fi
+
+            # 2. Check for the 'description' field using jq
+            # -e sets the exit code based on the result
+            if ! jq -e '.description and .description != ""' "$dir/package.json" > /dev/null; then
+              echo "❌ Error: The 'description' field in $dir/package.json is missing or empty."
+              echo "   Please add a brief description of your project to your package.json!"
+              exit 1
+            fi
+
+            # 2. Check for the 'author' field using jq
+            # -e sets the exit code based on the result
+            if ! jq -e '.author and .author != ""' "$dir/package.json" > /dev/null; then
+              echo "❌ Error: The 'author' field in $dir/package.json is missing or empty."
+              echo "   Please add an author of your project to your package.json!"
+              exit 1
+            fi
+
+            # 3. Check for README.md
+            if [ ! -f "$dir/README.md" ]; then
+              echo "❌ Error: README.md missing in $dir."
+              exit 1
+            fi
+
+            echo "✅ $dir looks good!"
+          done
