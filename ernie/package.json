@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Vibe coded frontend app to demonstrate AI coding tools",
   "license": "ISC",
-  "author": "",
+  "author": "Ernie Turner",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
