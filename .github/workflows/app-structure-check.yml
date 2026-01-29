@@ -2,7 +2,6 @@ name: Student App Folder Validation
 
 on:
   pull_request:
-    # This triggers the action whenever a file is changed in a subdirectory
     paths:
       - '**'
 
@@ -12,37 +11,46 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Essential to prevent 'ambiguous argument' errors
 
-      - name: Verify package.json and README
+      - name: Verify Folder Structure and package.json
         run: |
-          echo "Checking changed files..."
+          # Ensure the base branch is available for comparison
+          git fetch origin ${{ github.base_ref }}
 
-          # Identify changed directories
-          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }} | xargs -I {} dirname {} | sort | uniq)
+          echo "Identifying changed workspaces..."
+
+          # Get the top-level directory names only
+          FILES=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }})
+          CHANGED_DIRS=$(echo "$FILES" | cut -d/ -f1 | sort | uniq)
 
           for dir in $CHANGED_DIRS; do
-            # Skip root and .github
+            # 1. Skip files in the root, .github, and assets folder
             if [ "$dir" == "." ] || [[ "$dir" == .github* ]] || [[ "$dir" == assets ]]; then
+              echo "Skipping root-level item: $dir"
               continue
             fi
 
-            echo "Validating student app directory: $dir"
+            echo "------------------------------------------------"
+            echo "Validating student workspace: $dir"
 
-            # 1. Check if package.json exists
+            # 2. Check for package.json in the student's root
             if [ ! -f "$dir/package.json" ]; then
-              echo "❌ Error: package.json missing in $dir"
+              echo "❌ Error: package.json missing in '$dir/'. Did you run 'npm init'?"
               exit 1
             fi
 
-            # 2. Check for the 'description' field using jq
-            # -e sets the exit code based on the result
-            if ! jq -e '.description and .description != ""' "$dir/package.json" > /dev/null; then
-              echo "❌ Error: The 'description' field in $dir/package.json is missing or empty."
-              echo "   Please add a brief description of your project to your package.json!"
+            # 3. Check for a non-empty 'description' field using jq
+            # We use 'raw-output' to check the content easily
+            DESC=$(jq -r '.description // empty' "$dir/package.json")
+            if [ -z "$DESC" ] || [ "$DESC" == "null" ]; then
+              echo "❌ Error: The 'description' field in '$dir/package.json' is missing or empty."
+              echo "   Professional Tip: Every project needs a description so others know what it does!"
               exit 1
             fi
 
-            # 2. Check for the 'author' field using jq
+            # 4. Check for the 'author' field using jq
             # -e sets the exit code based on the result
             if ! jq -e '.author and .author != ""' "$dir/package.json" > /dev/null; then
               echo "❌ Error: The 'author' field in $dir/package.json is missing or empty."
@@ -50,11 +58,11 @@ jobs:
               exit 1
             fi
 
-            # 3. Check for README.md
+            # 5. Check for README.md
             if [ ! -f "$dir/README.md" ]; then
-              echo "❌ Error: README.md missing in $dir."
+              echo "❌ Error: README.md missing in '$dir/'. Don't forget to document your work!"
               exit 1
             fi
 
-            echo "✅ $dir looks good!"
+            echo "✅ $dir passed all checks!"
           done
