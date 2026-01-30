@@ -3,13 +3,14 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
-body,
+
 h1,
 h2,
 h3,
@@ -21,14 +22,12 @@ dl,
 dd {
   margin-block-end: 0;
 }
-ul[role="list"],
-ol[role="list"] {
+
+ul[role='list'],
+ol[role='list'] {
   list-style: none;
 }
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
+
 h1,
 h2,
 h3,
@@ -38,21 +37,25 @@ input,
 label {
   line-height: 1.1;
 }
+
 h1,
 h2,
 h3,
 h4 {
   text-wrap: balance;
 }
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
-  color: currentColor;
+  color: currentcolor;
 }
+
 img,
 picture {
   max-width: 100%;
   display: block;
 }
+
 input,
 button,
 textarea,
@@ -60,18 +63,21 @@ select {
   font-family: inherit;
   font-size: inherit;
 }
+
 textarea:not([rows]) {
   min-height: 10em;
 }
+
 :target {
   scroll-margin-block: 5ex;
 }
+
 /** End Reset CSS */
 
 body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-    Cantarell, sans-serif;
+  min-height: 100vh;
+  margin-block-end: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #f5f5f5;
@@ -132,19 +138,20 @@ body {
   background-color: white;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.3s ease;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  animation: fade-in 0.3s ease;
 }
 
 .tab-content.active {
   display: block;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -209,7 +216,7 @@ table tbody tr:nth-child(even):hover {
 }
 
 /* Responsive table */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   table {
     font-size: 14px;
   }
@@ -235,7 +242,7 @@ table tbody tr:nth-child(even):hover {
 }
 
 .accordion-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 }
 
 .accordion-header {
