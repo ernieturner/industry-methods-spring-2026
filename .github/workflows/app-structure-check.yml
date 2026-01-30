@@ -38,36 +38,36 @@ jobs:
             fi
 
             echo "------------------------------------------------"
-            echo "Validating student workspace: $dir"
+            echo "Validating student workspace: $item"
 
             # 2. Check for package.json in the student's root
-            if [ ! -f "$dir/package.json" ]; then
-              echo "❌ Error: package.json missing in '$dir/'. Did you run 'npm init'?"
+            if [ ! -f "$item/package.json" ]; then
+              echo "❌ Error: package.json missing in '$item/'. Did you run 'npm init'?"
               exit 1
             fi
 
             # 3. Check for a non-empty 'description' field using jq
             # We use 'raw-output' to check the content easily
-            DESC=$(jq -r '.description // empty' "$dir/package.json")
+            DESC=$(jq -r '.description // empty' "$item/package.json")
             if [ -z "$DESC" ] || [ "$DESC" == "null" ]; then
-              echo "❌ Error: The 'description' field in '$dir/package.json' is missing or empty."
+              echo "❌ Error: The 'description' field in '$item/package.json' is missing or empty."
               echo "   Professional Tip: Every project needs a description so others know what it does!"
               exit 1
             fi
 
             # 4. Check for the 'author' field using jq
             # -e sets the exit code based on the result
-            if ! jq -e '.author and .author != ""' "$dir/package.json" > /dev/null; then
-              echo "❌ Error: The 'author' field in $dir/package.json is missing or empty."
+            if ! jq -e '.author and .author != ""' "$item/package.json" > /dev/null; then
+              echo "❌ Error: The 'author' field in $item/package.json is missing or empty."
               echo "   Please add an author of your project to your package.json!"
               exit 1
             fi
 
             # 5. Check for README.md
-            if [ ! -f "$dir/README.md" ]; then
-              echo "❌ Error: README.md missing in '$dir/'. Don't forget to document your work!"
+            if [ ! -f "$item/README.md" ]; then
+              echo "❌ Error: README.md missing in '$item/'. Don't forget to document your work!"
               exit 1
             fi
 
-            echo "✅ $dir passed all checks!"
+            echo "✅ $item passed all checks!"
           done
