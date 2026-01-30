@@ -23,12 +23,17 @@ jobs:
 
           # Get the top-level directory names only
           FILES=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }})
-          CHANGED_DIRS=$(echo "$FILES" | cut -d/ -f1 | sort | uniq)
+          TOP_LEVEL_ITEMS=$(echo "$FILES" | cut -d/ -f1 | sort | uniq)
 
-          for dir in $CHANGED_DIRS; do
-            # 1. Skip files in the root, .github, and assets folder
-            if [ "$dir" == "." ] || [[ "$dir" == .github* ]] || [[ "$dir" == assets ]]; then
-              echo "Skipping root-level item: $dir"
+          for item in $TOP_LEVEL_ITEMS; do
+            if [ "$item" == ".github" ] || [ "$item" == "assets" ] || [ "$item" == "." ]; then
+              echo "Skipping root-level item: $item"
+              continue
+            fi
+
+            # skip if not a directory
+            if [ ! -d "$item" ]; then
+              echo "Skipping non-directory item: $item"
               continue
             fi
 
