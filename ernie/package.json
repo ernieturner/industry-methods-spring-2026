@@ -1,9 +1,9 @@
 {
   "name": "ernie",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple package.json file for a student project",
   "license": "ISC",
-  "author": "",
+  "author": "Ernie Turner",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
