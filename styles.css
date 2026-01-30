@@ -6,12 +6,11 @@
   margin: 0;
   padding: 0;
 }
+
 html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
-body,
+
 h1,
 h2,
 h3,
@@ -23,14 +22,12 @@ dl,
 dd {
   margin-block-end: 0;
 }
+
 ul[role='list'],
 ol[role='list'] {
   list-style: none;
 }
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
+
 h1,
 h2,
 h3,
@@ -40,21 +37,25 @@ input,
 label {
   line-height: 1.1;
 }
+
 h1,
 h2,
 h3,
 h4 {
   text-wrap: balance;
 }
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
-  color: currentColor;
+  color: currentcolor;
 }
+
 img,
 picture {
   max-width: 100%;
   display: block;
 }
+
 input,
 button,
 textarea,
@@ -62,15 +63,20 @@ select {
   font-family: inherit;
   font-size: inherit;
 }
+
 textarea:not([rows]) {
   min-height: 10em;
 }
+
 :target {
   scroll-margin-block: 5ex;
 }
+
 /** End Reset CSS */
 
 body {
+  min-height: 100vh;
+  margin-block-end: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: #333;
