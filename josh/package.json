@@ -1,9 +1,9 @@
 {
   "name": "josh",
   "version": "1.0.0",
-  "description": "",
+  "description": "Workspace for Josh",
   "license": "ISC",
-  "author": "",
+  "author": "Josh Aney",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
