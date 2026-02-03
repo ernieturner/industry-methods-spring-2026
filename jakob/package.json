@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Jakobs project directory",
   "license": "ISC",
-  "author": "",
+  "author": "Jakob",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
