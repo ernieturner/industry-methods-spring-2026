@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Very descriptive desription of describing",
   "license": "ISC",
-  "author": "",
+  "author": "Chance Larson",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
