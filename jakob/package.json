@@ -1,0 +1,12 @@
+{
+  "name": "jakob",
+  "version": "1.0.0",
+  "description": "Jakobs project directory",
+  "license": "ISC",
+  "author": "Jakob",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
