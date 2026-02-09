@@ -1,0 +1,204 @@
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #F0F0F0; /* Light Gray */
+  color: #333333; /* Black */
+  overflow-y: auto; /* Allow vertical scrolling for content */
+}
+
+.App {
+  min-height: 100%; /* Ensure app takes full height */
+  width: 100%; /* Take full width */
+  max-width: 1400px; /* Max width to keep content readable, but allow it to stretch */
+  margin: 0 auto; /* Center the entire app container */
+  padding: 20px;
+  text-align: center;
+  background-color: #FFFFFF; /* White background for the app content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-sizing: border-box; /* Include padding in width/height calculation */
+}
+
+h1 {
+  color: #CC0000; /* Poké Ball Red */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 10px 15px;
+  border: 2px solid #3B4CCA; /* Poké Ball Blue */
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  background-color: #FFFFFF; /* White background for input */
+  color: #333333; /* Black text for input */
+}
+
+.search-bar button {
+  background-color: #3B4CCA; /* Poké Ball Blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #CC0000; /* Darker Blue */
+}
+
+.filters select {
+  padding: 10px;
+  border: 2px solid #3B4CCA;
+  border-radius: 5px;
+  background-color: white;
+  color: #333333;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  justify-items: center; /* Center items within the grid */
+}
+
+.pokemon-card {
+  background-color: #FFFFFF; /* White */
+  border: 1px solid #DDDDDD; /* Lighter Gray border */
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Take full width of its grid column */
+  max-width: 200px; /* Ensure cards don't become too wide */
+  box-sizing: border-box;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-card img {
+  width: 96px; /* Standard sprite size */
+  height: 96px;
+  margin-bottom: 10px;
+  image-rendering: pixelated; /* For crisp pixel art */
+}
+
+.pokemon-card h3 {
+  margin: 0 0 5px 0;
+  color: #3B4CCA; /* Poké Ball Blue */
+  text-transform: capitalize;
+  font-size: 1.2rem;
+}
+
+.pokemon-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.pokemon-detail {
+  padding: 20px;
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 10px;
+  margin-top: 20px;
+  max-width: 600px; /* Limit width for detail view */
+  margin-left: auto;
+  margin-right: auto; /* Center detail view */
+  box-sizing: border-box;
+}
+
+.pokemon-detail h2 {
+  color: #CC0000; /* Poké Ball Red */
+  text-transform: capitalize;
+  margin-bottom: 15px;
+}
+
+.pokemon-detail img {
+  width: 128px; /* Larger sprite size */
+  height: 128px;
+  image-rendering: pixelated;
+  margin-bottom: 15px;
+  background-color: #F0F0F0;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.pokemon-detail h3 {
+  color: #3B4CCA;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.pokemon-detail ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pokemon-detail ul li {
+  /* Dynamic background color will be applied via inline style */
+  color: #FFFFFF; /* White text for better contrast on colored backgrounds */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+  min-width: 80px; /* Ensure type/stat tags have a consistent minimum width */
+}
+
+.pokemon-detail button {
+  background-color: #CC0000; /* Poké Ball Red */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.pokemon-detail button:hover {
+  background-color: #3B4CCA; /* Darker Red */
+}
