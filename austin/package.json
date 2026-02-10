@@ -1,9 +1,9 @@
 {
   "name": "austin",
   "version": "1.0.0",
-  "description": "",
+  "description": "austin/package.json",
   "license": "ISC",
-  "author": "",
+  "author": "Austin Hoffman",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
