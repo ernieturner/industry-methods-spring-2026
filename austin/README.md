@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Fridge Recipe Finder
 
 A TypeScript React application built with Vite that helps users discover recipes based on ingredients they have available.
@@ -92,3 +93,6 @@ src/
 - This is a client-only application with no backend
 - All code is fully TypeScript with strict type checking enabled
 - The typecheck script must always pass
+=======
+README file for austin repo
+>>>>>>> 831b955ee574f30dc17a7076618290ea1fbf5fec
