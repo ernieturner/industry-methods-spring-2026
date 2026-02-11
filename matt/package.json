@@ -7,5 +7,10 @@
   },
   "author": "Matt",
   "license": "ISC",
-  "description": "I did this because the test wanted me to."
+  "description": "I did this because the test wanted me to.",
+  "devDependencies": {
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
 }
