@@ -70,7 +70,6 @@ export const getPokemon = async (url: string): Promise<Pokemon> => {
   return response.json();
 };
 
-
 const App: React.FC = () => {
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
   const [filteredPokemon, setFilteredPokemon] = useState<Pokemon[]>([]);
@@ -116,7 +115,6 @@ const App: React.FC = () => {
     setSelectedPokemon(null);
   }, [searchTerm, selectedType, allPokemon]);
 
-
   const handlePokemonClick = (pokemon: Pokemon) => {
     setSelectedPokemon(pokemon);
   };
@@ -130,20 +128,27 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <h1>Pokedex</h1>
       <div className="filters">
         <SearchBar onSearch={setSearchTerm} />
         <select onChange={(e) => setSelectedType(e.target.value)} value={selectedType}>
           <option value="">All Types</option>
           {pokemonTypes.map(type => (
-            <option key={type} value={type}>{type}</option>
+            <option key={type} value={type}>
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </option>
           ))}
         </select>
       </div>
       {selectedPokemon ? (
         <div>
-          <button onClick={handleBackClick}>Back to List</button>
+          <button 
+            className="detail-back-btn"   // ← Added unique class here
+            onClick={handleBackClick}
+          >
+            Back to List
+          </button>
           <PokemonDetail pokemon={selectedPokemon} typeColors={typeColors} />
         </div>
       ) : (

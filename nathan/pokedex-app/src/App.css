@@ -7,30 +7,10 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #F0F0F0; /* Light Gray */
-  color: #333333; /* Black */
+  color: #333; /* Black */
   overflow-y: auto; /* Allow vertical scrolling for content */
-}
-
-.App {
-  min-height: 100%; /* Ensure app takes full height */
-  width: 100%; /* Take full width */
-  max-width: 1400px; /* Max width to keep content readable, but allow it to stretch */
-  margin: 0 auto; /* Center the entire app container */
-  padding: 20px;
-  text-align: center;
-  background-color: #FFFFFF; /* White background for the app content */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  box-sizing: border-box; /* Include padding in width/height calculation */
-}
-
-h1 {
-  color: #CC0000; /* Poké Ball Red */
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .filters {
@@ -55,8 +35,8 @@ h1 {
   font-size: 1rem;
   width: 100%;
   max-width: 300px;
-  background-color: #FFFFFF; /* White background for input */
-  color: #333333; /* Black text for input */
+  background-color: #FFF; /* White background for input */
+  color: #333; /* Black text for input */
 }
 
 .search-bar button {
@@ -71,7 +51,7 @@ h1 {
 }
 
 .search-bar button:hover {
-  background-color: #CC0000; /* Darker Blue */
+  background-color: #C00; /* Red on hover */
 }
 
 .filters select {
@@ -79,10 +59,30 @@ h1 {
   border: 2px solid #3B4CCA;
   border-radius: 5px;
   background-color: white;
-  color: #333333;
+  color: #333;
   font-size: 1rem;
   cursor: pointer;
   text-transform: capitalize;
+}
+
+.app {
+  min-height: 100%; /* Ensure app takes full height */
+  width: 100%; /* Take full width */
+  max-width: 1400px; /* Max width to keep content readable */
+  margin: 0 auto; /* Center the entire app container */
+  padding: 20px;
+  text-align: center;
+  background-color: #FFF; /* White background for the app content */
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  box-sizing: border-box; /* Include padding in width/height calculation */
+}
+
+h1 {
+  color: #C00; /* Poké Ball Red */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .pokemon-list {
@@ -94,8 +94,8 @@ h1 {
 }
 
 .pokemon-card {
-  background-color: #FFFFFF; /* White */
-  border: 1px solid #DDDDDD; /* Lighter Gray border */
+  background-color: #FFF; /* White */
+  border: 1px solid #DDD; /* Lighter Gray border */
   border-radius: 10px;
   padding: 15px;
   cursor: pointer;
@@ -110,7 +110,7 @@ h1 {
 
 .pokemon-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
 }
 
 .pokemon-card img {
@@ -121,7 +121,7 @@ h1 {
 }
 
 .pokemon-card h3 {
-  margin: 0 0 5px 0;
+  margin: 0 0 5px;
   color: #3B4CCA; /* Poké Ball Blue */
   text-transform: capitalize;
   font-size: 1.2rem;
@@ -130,13 +130,13 @@ h1 {
 .pokemon-card p {
   margin: 0;
   font-size: 0.9rem;
-  color: #555555;
+  color: #555;
 }
 
 .pokemon-detail {
   padding: 20px;
-  background-color: #FFFFFF;
-  border: 1px solid #DDDDDD;
+  background-color: #FFF;
+  border: 1px solid #DDD;
   border-radius: 10px;
   margin-top: 20px;
   max-width: 600px; /* Limit width for detail view */
@@ -146,7 +146,7 @@ h1 {
 }
 
 .pokemon-detail h2 {
-  color: #CC0000; /* Poké Ball Red */
+  color: #C00; /* Poké Ball Red */
   text-transform: capitalize;
   margin-bottom: 15px;
 }
@@ -179,7 +179,7 @@ h1 {
 
 .pokemon-detail ul li {
   /* Dynamic background color will be applied via inline style */
-  color: #FFFFFF; /* White text for better contrast on colored backgrounds */
+  color: #FFF; /* White text for better contrast on colored backgrounds */
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
@@ -187,8 +187,12 @@ h1 {
   min-width: 80px; /* Ensure type/stat tags have a consistent minimum width */
 }
 
-.pokemon-detail button {
-  background-color: #CC0000; /* Poké Ball Red */
+/* ────────────────────────────────────────────────
+   Changed from .pokemon-detail button to .detail-back-btn
+   This makes the last selector different → fixes no-descending-specificity
+───────────────────────────────────────────────── */
+.pokemon-detail .detail-back-btn {
+  background-color: #C00; /* Poké Ball Red */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -199,6 +203,6 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.pokemon-detail button:hover {
-  background-color: #3B4CCA; /* Darker Red */
+.pokemon-detail .detail-back-btn:hover {
+  background-color: #3B4CCA; /* Blue on hover */
 }
