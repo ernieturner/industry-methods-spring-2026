@@ -19,9 +19,10 @@
   },
   "scripts": {
     "html-validate": "html-validate index.html",
-    "css-validate": "stylelint '**/*.css'",
-    "css-validate-fix": "stylelint '**/*.css' --fix",
-    "format-check": "prettier --check .",
-    "format": "prettier --write ."
+    "css-validate": "stylelint '*.css'",
+    "css-validate-fix": "stylelint '*.css' --fix",
+    "format-check": "prettier --check index.html styles.css",
+    "format": "prettier --write index.html styles.css",
+    "thing": "prettier --help"
   }
 }
