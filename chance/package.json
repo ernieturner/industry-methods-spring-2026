@@ -1,0 +1,12 @@
+{
+  "name": "chance",
+  "version": "1.0.0",
+  "description": "Very descriptive desription of describing",
+  "license": "ISC",
+  "author": "Chance Larson",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

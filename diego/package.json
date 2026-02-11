@@ -1,0 +1,12 @@
+{
+  "name": "diego",
+  "version": "1.0.0",
+  "description": "Workspace for Diego",
+  "license": "ISC",
+  "author": "Diego Moylan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
