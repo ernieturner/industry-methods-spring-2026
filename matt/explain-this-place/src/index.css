@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Sora:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --app-bg: #f5f5f6;
+    --app-text: #0f1114;
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+    --card-border: #e6e8ec;
+    --card-shadow: 0 30px 80px -60px rgba(0, 0, 0, 0.35);
+    --accent: #0f1114;
+    --accent-contrast: #ffffff;
+    --accent-soft: #1f2937;
+    --chip-bg: #f2f4f7;
+    --chip-text: #0f1114;
+    --glow-1: rgba(17, 19, 24, 0.06);
+    --glow-2: rgba(31, 41, 55, 0.06);
+  }
+
+  .dark {
+    --app-bg: #0b0b0d;
+    --app-text: #f3f4f6;
+    --muted: #a3a7ad;
+    --card-bg: #0f1014;
+    --card-border: #1e222a;
+    --card-shadow: 0 40px 90px -60px rgba(0, 0, 0, 0.9);
+    --accent: #f3f4f6;
+    --accent-contrast: #0b0b0d;
+    --accent-soft: #e5e7eb;
+    --chip-bg: #171a20;
+    --chip-text: #e5e7eb;
+    --glow-1: rgba(255, 255, 255, 0.05);
+    --glow-2: rgba(255, 255, 255, 0.04);
+  }
+
+  html {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Sora", "Space Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  body {
+    background: var(--app-bg);
+    color: var(--app-text);
+  }
+}
+
+/* Explicit spacer between section cards */
+.section-gap {
+  height: 48px;
+  background: var(--app-bg);
+}
+
+/* Extra bottom space inside section cards */
+.card-bottom-gap {
+  padding-bottom: 40px;
+}
+
+/* Extra inner padding so text doesn't hug card borders */
+.section-content {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Remove default focus outline/inner glow on buttons in dark sections */
+button:focus,
+button:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.tab-to-input-gap {
+  padding-top: 12px;
+}
+
+/* Place page layout helpers */
+.place-section-gap {
+  row-gap: 48px;
+}
+.place-grid-gap {
+  gap: 64px;
+}
+.weather-grid-gap {
+  gap: 56px;
+}
+.place-section-pad {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.header-gap {
+  margin-top: 48px;
+}
+
+.section-bottom-gap {
+  margin-bottom: 48px;
+}
+.place-forecast-gap {
+  margin-top: 0;
+}
+.place-bottom-gap {
+  margin-bottom: 0;
+}
+
+.place-stats-gap {
+  gap: 24px;
+}
+
+.overview-gap {
+  margin-top: 48px;
+}
+
+.stats-top-gap {
+  margin-top: 0;
+}
+
+.photo-to-stats-gap {
+  margin-top: 0;
+}
+
+.photo-to-crowds-gap {
+  margin-top: 0;
+}
+.weather-card-tight {
+  padding-bottom: 12px;
+}
+
+.weather-card-rounded {
+  border-radius: 22px;
+}
+
+.weather-card-compact .weather-meta {
+  margin-top: 6px;
+}
+
+.weather-card-compact {
+  padding-bottom: 2px;
+}

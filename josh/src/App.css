@@ -1,0 +1,902 @@
+/* ============================================
+   App Layout
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.25rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.header-subtitle {
+  margin: 0.1rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.auto-refresh-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 3px;
+  background: var(--success);
+  color: #fff;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.period-select {
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.refresh-btn,
+.auto-refresh-btn,
+.list-toggle-btn,
+.theme-toggle {
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.refresh-btn:hover:not(:disabled),
+.auto-refresh-btn:hover,
+.list-toggle-btn:hover,
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.auto-refresh-btn.active,
+.list-toggle-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ============================================
+   Statistics Bar
+   ============================================ */
+
+.statistics-bar {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.4rem 1.25rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.stat-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-max {
+  color: var(--danger);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-tsunami .stat-value {
+  color: var(--danger);
+}
+
+/* ============================================
+   Map
+   ============================================ */
+
+.map-wrapper {
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   Map Toolbar
+   ============================================ */
+
+.map-toolbar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem;
+  background: var(--panel-bg);
+  border-radius: 8px;
+  z-index: 999;
+  backdrop-filter: blur(8px);
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.toolbar-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 0.15rem;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-color);
+  margin: 0 0.2rem;
+}
+
+.toolbar-btn {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.toolbar-btn:hover {
+  border-color: var(--accent);
+}
+
+.toolbar-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ============================================
+   Legend
+   ============================================ */
+
+.legend {
+  position: absolute;
+  bottom: 80px;
+  left: 12px;
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  z-index: 999;
+  font-size: 0.75rem;
+  backdrop-filter: blur(8px);
+}
+
+.legend h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.15rem;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Bottom Map Controls (Slider + TimeLapse)
+   ============================================ */
+
+.map-bottom-controls {
+  position: absolute;
+  bottom: 12px;
+  left: 100px;
+  right: 12px;
+  display: flex;
+  gap: 0.75rem;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.map-bottom-controls > * {
+  pointer-events: auto;
+}
+
+/* ============================================
+   Magnitude Slider
+   ============================================ */
+
+.magnitude-slider {
+  background: var(--panel-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  min-width: 180px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.slider-values {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.slider-track {
+  position: relative;
+  height: 20px;
+}
+
+.slider-input {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 20px;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  margin: 0;
+}
+
+.slider-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  pointer-events: auto;
+  border: 2px solid var(--bg-primary);
+}
+
+.slider-input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  pointer-events: auto;
+  border: 2px solid var(--bg-primary);
+}
+
+/* ============================================
+   Time-Lapse Controls
+   ============================================ */
+
+.timelapse-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--panel-bg);
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  flex: 1;
+}
+
+.timelapse-btn {
+  background: none;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2rem 0.45rem;
+  border-radius: 5px;
+  transition: border-color 0.15s;
+  line-height: 1;
+}
+
+.timelapse-btn:hover {
+  border-color: var(--accent);
+}
+
+.timelapse-slider {
+  flex: 1;
+  height: 4px;
+  appearance: none;
+  background: var(--border-color);
+  border-radius: 2px;
+  outline: none;
+}
+
+.timelapse-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.timelapse-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+}
+
+.timelapse-count {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ============================================
+   Cluster Icons
+   ============================================ */
+
+.cluster-icon {
+  background: none !important;
+  border: none !important;
+}
+
+.cluster-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 2px solid rgb(255 255 255 / 50%);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+}
+
+/* ============================================
+   Earthquake List (left sidebar)
+   ============================================ */
+
+.earthquake-list {
+  width: 300px;
+  min-width: 300px;
+  height: 100%;
+  background: var(--bg-primary);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  animation: slide-in-left 0.2s ease-out;
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.list-header h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.list-search {
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.list-sort-bar {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.35rem 0.65rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sort-btn {
+  flex: 1;
+  padding: 0.25rem;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sort-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.list-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.list-empty {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.list-item:hover {
+  background: var(--bg-surface);
+}
+
+.list-item.selected {
+  background: var(--bg-tertiary);
+  border-left: 3px solid var(--accent);
+}
+
+.list-mag {
+  font-size: 1rem;
+  font-weight: 800;
+  min-width: 36px;
+}
+
+.list-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.list-place {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   Detail Panel (right sidebar)
+   ============================================ */
+
+.detail-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  z-index: 1001;
+  overflow-y: auto;
+  box-shadow: -4px 0 24px var(--shadow);
+  animation: slide-in 0.25s ease-out;
+}
+
+@keyframes slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.detail-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-panel-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.close-btn:hover {
+  color: var(--text-primary);
+}
+
+.detail-panel-content {
+  padding: 1rem 1.25rem;
+}
+
+.magnitude-display {
+  text-align: center;
+  padding: 1rem;
+  border: 3px solid;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.magnitude-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.magnitude-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-section {
+  margin-bottom: 1.25rem;
+}
+
+.detail-section h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.detail-section p {
+  margin: 0.2rem 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.location-name {
+  font-weight: 600;
+  font-size: 1rem !important;
+}
+
+.coordinates,
+.depth {
+  color: var(--text-secondary);
+  font-size: 0.82rem !important;
+}
+
+.local-time {
+  color: var(--text-secondary);
+}
+
+.time-ago {
+  color: var(--text-muted);
+  font-size: 0.82rem !important;
+  font-style: italic;
+}
+
+/* Felt section */
+.felt-section {
+  background: var(--bg-surface);
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+/* Weather */
+.weather-info {
+  background: var(--bg-surface);
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.weather-temp {
+  font-size: 1.2rem !important;
+  font-weight: 700;
+}
+
+.weather-desc {
+  color: var(--text-secondary);
+}
+
+.weather-wind,
+.weather-tz {
+  color: var(--text-secondary);
+  font-size: 0.82rem !important;
+}
+
+.weather-error {
+  color: var(--danger);
+}
+
+/* Nearby list */
+.nearby-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nearby-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.nearby-item:hover {
+  border-color: var(--accent);
+}
+
+.nearby-mag {
+  font-weight: 700;
+  font-size: 0.85rem;
+  min-width: 38px;
+}
+
+.nearby-dist {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  min-width: 52px;
+}
+
+.nearby-place {
+  font-size: 0.78rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tsunami warning */
+.tsunami-warning {
+  background: rgb(229 57 53 / 12%);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgb(229 57 53 / 30%);
+}
+
+.tsunami-warning h3 {
+  color: var(--danger) !important;
+}
+
+/* USGS link */
+.usgs-link {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.15s;
+}
+
+.usgs-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ============================================
+   Loading & Error States
+   ============================================ */
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: var(--text-secondary);
+  gap: 1rem;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: var(--danger);
+  gap: 1rem;
+}
+
+.error-message button {
+  padding: 0.5rem 1.25rem;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (width <= 768px) {
+  .app-header {
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .header-left h1 {
+    font-size: 0.95rem;
+  }
+
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .detail-panel {
+    width: 100%;
+  }
+
+  .earthquake-list {
+    width: 100%;
+    min-width: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1002;
+  }
+
+  .statistics-bar {
+    gap: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .map-toolbar {
+    top: 8px;
+    right: 8px;
+    flex-wrap: wrap;
+    max-width: calc(100% - 16px);
+  }
+
+  .map-bottom-controls {
+    left: 12px;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}

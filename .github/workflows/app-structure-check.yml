@@ -1,0 +1,73 @@
+name: Student App Folder Validation
+
+on:
+  pull_request:
+    paths:
+      - '**'
+
+jobs:
+  validate-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Essential to prevent 'ambiguous argument' errors
+
+      - name: Verify Folder Structure and package.json
+        run: |
+          # Ensure the base branch is available for comparison
+          git fetch origin ${{ github.base_ref }}
+
+          echo "Identifying changed workspaces..."
+
+          # Get the top-level directory names only
+          FILES=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }})
+          TOP_LEVEL_ITEMS=$(echo "$FILES" | cut -d/ -f1 | sort | uniq)
+
+          for item in $TOP_LEVEL_ITEMS; do
+            if [ "$item" == ".github" ] || [ "$item" == "assets" ] || [ "$item" == "." ]; then
+              echo "Skipping root-level item: $item"
+              continue
+            fi
+
+            # skip if not a directory
+            if [ ! -d "$item" ]; then
+              echo "Skipping non-directory item: $item"
+              continue
+            fi
+
+            echo "------------------------------------------------"
+            echo "Validating student workspace: $item"
+
+            # 2. Check for package.json in the student's root
+            if [ ! -f "$item/package.json" ]; then
+              echo "❌ Error: package.json missing in '$item/'. Did you run 'npm init'?"
+              exit 1
+            fi
+
+            # 3. Check for a non-empty 'description' field using jq
+            # We use 'raw-output' to check the content easily
+            DESC=$(jq -r '.description // empty' "$item/package.json")
+            if [ -z "$DESC" ] || [ "$DESC" == "null" ]; then
+              echo "❌ Error: The 'description' field in '$item/package.json' is missing or empty."
+              echo "   Professional Tip: Every project needs a description so others know what it does!"
+              exit 1
+            fi
+
+            # 4. Check for the 'author' field using jq
+            # -e sets the exit code based on the result
+            if ! jq -e '.author and .author != ""' "$item/package.json" > /dev/null; then
+              echo "❌ Error: The 'author' field in $item/package.json is missing or empty."
+              echo "   Please add an author of your project to your package.json!"
+              exit 1
+            fi
+
+            # 5. Check for README.md
+            if [ ! -f "$item/README.md" ]; then
+              echo "❌ Error: README.md missing in '$item/'. Don't forget to document your work!"
+              exit 1
+            fi
+
+            echo "✅ $item passed all checks!"
+          done
