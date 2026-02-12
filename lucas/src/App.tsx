@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import type { Recipe, Meal, WeightUnit } from "./types/recipe";
-import { searchRecipesByIngredients, fetchRecipeNutritionBulk } from "./api/spoonacular";
-import IngredientInput from "./components/IngredientInput";
-import RecipeList from "./components/RecipeList";
-import ProteinTracker from "./components/ProteinTracker";
+import { useState, useEffect } from 'react';
+import './App.css';
+import type { Recipe, Meal, WeightUnit } from './types/recipe';
+import { searchRecipesByIngredients, fetchRecipeNutritionBulk } from './api/spoonacular';
+import IngredientInput from './components/IngredientInput';
+import RecipeList from './components/RecipeList';
+import ProteinTracker from './components/ProteinTracker';
 
 function App() {
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -13,30 +13,30 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   const [bodyWeight, setBodyWeight] = useState<number>(() => {
-    const stored = localStorage.getItem("proteinTracker_bodyWeight");
+    const stored = localStorage.getItem('proteinTracker_bodyWeight');
     return stored ? Number(stored) : 150;
   });
 
   const [weightUnit, setWeightUnit] = useState<WeightUnit>(() => {
-    const stored = localStorage.getItem("proteinTracker_weightUnit");
-    return stored === "kg" ? "kg" : "lbs";
+    const stored = localStorage.getItem('proteinTracker_weightUnit');
+    return stored === 'kg' ? 'kg' : 'lbs';
   });
 
   const [meals, setMeals] = useState<Meal[]>(() => {
-    const stored = localStorage.getItem("proteinTracker_meals");
+    const stored = localStorage.getItem('proteinTracker_meals');
     return stored ? JSON.parse(stored) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem("proteinTracker_bodyWeight", String(bodyWeight));
+    localStorage.setItem('proteinTracker_bodyWeight', String(bodyWeight));
   }, [bodyWeight]);
 
   useEffect(() => {
-    localStorage.setItem("proteinTracker_weightUnit", weightUnit);
+    localStorage.setItem('proteinTracker_weightUnit', weightUnit);
   }, [weightUnit]);
 
   useEffect(() => {
-    localStorage.setItem("proteinTracker_meals", JSON.stringify(meals));
+    localStorage.setItem('proteinTracker_meals', JSON.stringify(meals));
   }, [meals]);
 
   function handleAddIngredient(ingredient: string) {
@@ -62,11 +62,11 @@ function App() {
           prev.map((r) => ({
             ...r,
             protein: proteinMap.get(r.id) ?? null,
-          }))
+          })),
         );
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An unknown error occurred");
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
       setRecipes([]);
     } finally {
       setLoading(false);
@@ -99,28 +99,16 @@ function App() {
         onWeightUnitChange={setWeightUnit}
         onRemoveMeal={handleRemoveMeal}
       />
-      <IngredientInput
-        ingredients={ingredients}
-        onAdd={handleAddIngredient}
-        onRemove={handleRemoveIngredient}
-      />
-      <button
-        className="search-button"
-        onClick={handleSearch}
-        disabled={ingredients.length === 0 || loading}
-      >
-        {loading ? "Searching..." : "Find Recipes"}
+      <IngredientInput ingredients={ingredients} onAdd={handleAddIngredient} onRemove={handleRemoveIngredient} />
+      <button className="search-button" onClick={handleSearch} disabled={ingredients.length === 0 || loading}>
+        {loading ? 'Searching...' : 'Find Recipes'}
       </button>
       {error && <div className="error">{error}</div>}
       {loading && <div className="loading">Loading recipes...</div>}
       {!loading && !error && recipes.length === 0 && ingredients.length > 0 && (
-        <div className="empty-state">
-          Add ingredients and click "Find Recipes" to get started.
-        </div>
+        <div className="empty-state">Add ingredients and click "Find Recipes" to get started.</div>
       )}
-      {!loading && recipes.length > 0 && (
-        <RecipeList recipes={recipes} onAddToPlan={handleAddToPlan} />
-      )}
+      {!loading && recipes.length > 0 && <RecipeList recipes={recipes} onAddToPlan={handleAddToPlan} />}
     </>
   );
 }

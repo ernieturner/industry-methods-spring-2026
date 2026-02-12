@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface IngredientInputProps {
   ingredients: string[];
@@ -6,23 +6,19 @@ interface IngredientInputProps {
   onRemove: (ingredient: string) => void;
 }
 
-export default function IngredientInput({
-  ingredients,
-  onAdd,
-  onRemove,
-}: IngredientInputProps) {
-  const [value, setValue] = useState("");
+export default function IngredientInput({ ingredients, onAdd, onRemove }: IngredientInputProps) {
+  const [value, setValue] = useState('');
 
   function handleAdd() {
     const trimmed = value.trim().toLowerCase();
     if (trimmed && !ingredients.includes(trimmed)) {
       onAdd(trimmed);
-      setValue("");
+      setValue('');
     }
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleAdd();
     }
   }

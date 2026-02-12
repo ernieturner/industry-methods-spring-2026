@@ -1,5 +1,5 @@
-import type { Recipe } from "../types/recipe";
-import RecipeCard from "./RecipeCard";
+import type { Recipe } from '../types/recipe';
+import RecipeCard from './RecipeCard';
 
 interface RecipeListProps {
   recipes: Recipe[];

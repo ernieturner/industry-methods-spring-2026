@@ -32,7 +32,7 @@ export interface Meal {
   addedAt: number;
 }
 
-export type WeightUnit = "lbs" | "kg";
+export type WeightUnit = 'lbs' | 'kg';
 
 export interface NutrientInfo {
   name: string;
