@@ -1,0 +1,240 @@
+.blackjack-table {
+  width: 100vw;
+  max-width: 1400px;
+  height: 80vh;
+  background-color: #216a3a;
+  border-radius: 15px; /* Rounded rectangle */
+  margin: 20px auto; /* Center table with vertical margin */
+  display: flex;
+  flex-direction: row; /* Main children (main-game-area & probabilities) side-by-side */
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  padding: 20px; /* Keep reduced padding */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.main-game-area {
+  display: flex;
+  flex-direction: column; /* Content inside game area arranged vertically */
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1; /* Allow main game area to grow */
+  height: 100%; /* Take full height of table */
+  padding-right: 20px; /* Space between game area and probabilities */
+}
+
+/* Top info area (chips/bet/running count) */
+.table-top-info {
+  display: flex;
+  justify-content: space-evenly; /* Evenly distribute chips, bet, running count */
+  width: 100%;
+  padding: 0 10px;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/* Text for dealer/player hand info */
+.hand-info {
+  margin-bottom: 10px;
+  font-size: 1.3em; /* Larger font size */
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for visibility */
+}
+
+/* Middle section for controls */
+.main-controls-area {
+  display: flex;
+  justify-content: space-between; /* Push betting left, deck controls right */
+  align-items: flex-start; /* Align items to the start (top) */
+  width: 100%;
+  padding: 0 10px;
+  min-height: 150px; /* Ensure consistent height for button stability */
+}
+
+.running-count-display { /* Now directly within table-top-info */
+  text-align: center; /* Center within its allocated space */
+  font-size: 1.1em;
+  color: white;
+  font-weight: bold;
+}
+
+.deck-and-reset-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.deck-and-reset-controls select {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+}
+
+.deck-and-reset-controls button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.betting-controls-left { /* New class for left-aligned betting controls */
+  display: flex;
+  justify-content: flex-start; /* Align to the start (left) */
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1; /* Allow it to take up space */
+  min-height: 120px; /* Ensure consistent height */
+  align-self: flex-start; /* Align to the start within main-controls-area */
+}
+
+.betting-controls-left label {
+  color: white;
+}
+
+.betting-controls-left input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 80px;
+  background-color: #444;
+  color: white;
+}
+
+.betting-controls-left button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.controls { /* General game action controls (Hit, Stand, etc.) */
+  display: flex; /* Kept flex display */
+  padding: 0; /* Remove padding here, move to action-buttons-group */
+  flex-grow: 1; /* Allow it to take up space */
+  min-height: 120px; /* Ensure consistent height */
+  align-self: flex-start; /* Align to the start within main-controls-area */
+  justify-content: flex-start; /* Align content to the left */
+}
+
+/* Specific styling for the group of action buttons within Controls */
+.action-buttons-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align buttons to the left */
+  gap: 10px; /* Gap between vertically stacked buttons */
+  padding: 10px; /* Add some padding around the button group */
+}
+
+.controls button { /* Styles apply to buttons directly inside .controls or .action-buttons-group */
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #4CAF50, #367c39); /* Green gradient */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4), inset 1px 1px 3px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  min-width: 150px; /* Ensure buttons have a consistent width */
+  text-align: center; /* Center text within buttons */
+}
+
+.controls button:hover:not(:disabled) {
+  background: linear-gradient(145deg, #367c39, #4CAF50); /* Reverse gradient on hover */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.controls button:active:not(:disabled) {
+  background: #2e6231;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transform: translateY(0);
+}
+
+.controls button:disabled {
+  background-color: #666; /* Darker gray for disabled */
+  color: #bbb;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* New game button style */
+.new-game-button {
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #007bff, #0056b3); /* Blue gradient */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4), inset 1px 1px 3px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.new-game-button:hover {
+  background: linear-gradient(145deg, #0056b3, #007bff);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.new-game-button:active {
+  background: #004085;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transform: translateY(0);
+}
+
+
+/* Probabilities Display sits on the right */
+.probabilities-display {
+  width: 100px; /* Reduced width to 100px as requested */
+  margin-left: 15px; /* Space from the game area */
+  align-self: center; /* Vertically center it within the row flex container */
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 10px; /* Reduced padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Reduced gap */
+  font-size: 0.85em; /* Smaller font for entire display */
+}
+
+.probabilities-display h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #4CAF50;
+  font-size: 1.1em; /* Smaller heading */
+}
+
+.decision-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px; /* Further reduce margin */
+  font-size: 0.85em; /* Consistent with parent */
+}
+
+.decision-row span:first-child {
+  font-weight: bold;
+  color: #aaffa2;
+}

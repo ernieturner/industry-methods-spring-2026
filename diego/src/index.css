@@ -1,0 +1,15 @@
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll due to potential minor misalignments */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
