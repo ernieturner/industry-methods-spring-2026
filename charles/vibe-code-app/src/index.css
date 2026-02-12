@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  color: #132024;
+  background-color: #f4fbf8;
+  line-height: 1.4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 137, 101, 0.28), transparent 35%),
+    radial-gradient(circle at 85% 90%, rgba(64, 166, 155, 0.26), transparent 38%),
+    linear-gradient(130deg, #f9fffc, #ecf8f4 42%, #fff7ee 100%);
+}
+
+#root {
+  min-height: 100vh;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
