@@ -1,34 +1,60 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { searchRecipesByIngredients } from './api'
+import { RecipeSearchResult } from './types'
+import { IngredientInput } from './components/IngredientInput'
+import { SearchResults } from './components/SearchResults'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App(): React.ReactNode {
+  const [results, setResults] = useState<RecipeSearchResult[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSearch = async (ingredients: string[]): Promise<void> => {
+    setIsLoading(true)
+    setError(null)
+    setResults([])
+
+    try {
+      const data = await searchRecipesByIngredients(ingredients)
+      setResults(data)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error occurred'
+      setError(message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="app">
+      <header className="app-header">
+        <h1>Fridge Recipe Finder</h1>
+        <p>Discover recipes based on ingredients you have</p>
+      </header>
+
+      <main className="app-main">
+        <IngredientInput onSearch={handleSearch} isLoading={isLoading} />
+        <SearchResults
+          results={results}
+          isLoading={isLoading}
+          error={error}
+        />
+      </main>
+
+      <footer className="app-footer">
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          Powered by{' '}
+          <a
+            href="https://spoonacular.com/food-api"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Spoonacular API
+          </a>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </footer>
+    </div>
   )
 }
 

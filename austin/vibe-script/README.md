@@ -1,73 +1,102 @@
-# React + TypeScript + Vite
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Fridge Recipe Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A TypeScript React application built with Vite that helps users discover recipes based on ingredients they have available.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for recipes by ingredients
+- View ingredient matches and missing ingredients
+- Responsive design for mobile and desktop
+- Powered by the Spoonacular Food API
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 16+ 
+- npm or yarn
+- A free API key from [Spoonacular](https://spoonacular.com/food-api)
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Get your API key:**
+   - Visit https://spoonacular.com/food-api
+   - Sign up for a free account
+   - Copy your API key
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Create environment file:**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Edit `.env.local` and add your API key:
+   ```
+   VITE_SPOONACULAR_API_KEY=your_api_key_here
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Running the Application
+
+- **Development server:**
+  ```bash
+  npm run dev
+  ```
+  Open http://localhost:5173 in your browser
+
+- **Build for production:**
+  ```bash
+  npm run build
+  ```
+
+- **Preview production build:**
+  ```bash
+  npm run preview
+  ```
+
+- **Type check:**
+  ```bash
+  npm run typecheck
+  ```
+  This runs TypeScript type checking. All code is fully type-safe and this should always pass.
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── IngredientInput.tsx   # Component for adding ingredients
+│   ├── RecipeCard.tsx        # Component to display individual recipe
+│   └── SearchResults.tsx     # Component to display search results
+├── styles/
+│   ├── IngredientInput.css
+│   ├── RecipeCard.css
+│   └── SearchResults.css
+├── App.tsx                   # Main application component
+├── App.css                   # Application styles
+├── api.ts                    # Spoonacular API integration
+├── types.ts                  # TypeScript type definitions
+├── main.tsx                  # React entry point
+└── index.css                 # Global styles
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Technology Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React 19** - UI library
+- **TypeScript** - Language with strict type checking
+- **Vite** - Build tool and dev server
+- **Spoonacular API** - Recipe data source
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Notes
+
+- This is a client-only application with no backend
+- All code is fully TypeScript with strict type checking enabled
+- The typecheck script must always pass
+=======
+README file for austin repo
+>>>>>>> 831b955ee574f30dc17a7076618290ea1fbf5fec
+=======
+README file for austin repo
+>>>>>>> 07c0b72d73bb22a64892a905abbc89f9aadf2b8e
