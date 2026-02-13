@@ -82,28 +82,37 @@ function normalizeArticleTitle(article: string): string {
 
 async function fetchTopPagesByViews(limit = 300): Promise<Map<string, number>> {
   const now = new Date();
-  const yesterday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 1));
-  const { year, month, day } = formatUtcDay(yesterday);
-  const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${year}/${month}/${day}`;
+  const dayOffsets = [1, 2, 3, 4, 5, 6, 7];
 
-  const response = await fetch(url, { headers: { Accept: 'application/json' } });
-  if (!response.ok) {
-    throw new Error(`Wikimedia pageviews API failed with status ${response.status}.`);
+  for (const offset of dayOffsets) {
+    const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - offset));
+    const { year, month, day } = formatUtcDay(date);
+    const url = `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${year}/${month}/${day}`;
+    const response = await fetch(url, { headers: { Accept: 'application/json' } });
+    if (!response.ok) {
+      continue;
+    }
+
+    const parsed = TopPageviewsSchema.parse((await response.json()) as unknown);
+    const first = parsed.items[0];
+    if (!first) {
+      continue;
+    }
+
+    const map = new Map<string, number>();
+    first.articles
+      .filter((article) => article.article !== 'Main_Page' && !article.article.startsWith('Special:'))
+      .slice(0, limit)
+      .forEach((article) => {
+        map.set(normalizeArticleTitle(article.article), article.views);
+      });
+
+    if (map.size > 0) {
+      return map;
+    }
   }
 
-  const parsed = TopPageviewsSchema.parse((await response.json()) as unknown);
-  const first = parsed.items[0];
-  const map = new Map<string, number>();
-  if (!first) return map;
-
-  first.articles
-    .filter((article) => article.article !== 'Main_Page' && !article.article.startsWith('Special:'))
-    .slice(0, limit)
-    .forEach((article) => {
-      map.set(normalizeArticleTitle(article.article), article.views);
-    });
-
-  return map;
+  return new Map<string, number>();
 }
 
 function countEditsByTitle(changes: RecentChange[], sinceTimeMs: number): Map<string, number> {
